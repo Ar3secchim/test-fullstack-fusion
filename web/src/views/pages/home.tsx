@@ -1,3 +1,4 @@
+import HeroList from "@views/components/heroList";
 import LayoutRoot from "@views/layouts/layoutRoot";
 
 export interface ITasksProps {
@@ -9,7 +10,7 @@ function Home() {
   return (
     <LayoutRoot>
       <div className="mx-6 lg:w-3/5 lg:mx-auto">
-        Hellou World
+        <HeroList />
       </div>
     </LayoutRoot>
   );
