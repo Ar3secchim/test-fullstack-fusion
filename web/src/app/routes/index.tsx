@@ -1,9 +1,8 @@
+import Home from "@views/pages/home";
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Home from "../../views/pages/home";
-
-import routes from "./route";
+import routes from "./routes";
 
 function Router() {
   return (
