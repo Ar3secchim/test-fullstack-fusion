@@ -41,8 +41,8 @@
 **Componentes Necessários:**
 
 - [x] `HeroList`: Componente que exibe a lista de heróis.
-- [ ] `HeroItem`: Componente que representa um herói individual com opções de editar e excluir.
-- [ ] `HeroForm`: Componente para criar e editar heróis.
+- [x] `HeroItem`: Componente que representa um herói individual com opções de editar e excluir.
+- [x] `HeroForm`: Componente para criar e editar heróis.
 
 ### Backend (Node + NestJS + TypeScript + Banco de Dados Relacional ou Não Relacional)
 
