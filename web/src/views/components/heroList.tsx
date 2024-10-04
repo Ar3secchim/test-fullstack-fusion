@@ -10,9 +10,9 @@ import {
 import HeroItem from "./heroItem";
 
 const heroes: IHero[] = [
-  { id: 1, name: "Superman" },
-  { id: 2, name: "Batman" },
-  { id: 3, name: "Wonder" },
+  { id: 1, name: "Superman", skill: "Super Força", origin: "Krypton" },
+  { id: 2, name: "Batman", skill: "Inteligência", origin: "Terra" },
+  { id: 3, name: "Wonder", skill: "Velocidade", origin: "Terra" },
 ];
 const lengthHeroes = heroes.length;
 
@@ -45,10 +45,14 @@ function HeroList() {
             <Wind size={40} />
             <Leaf size={18} />
           </span>
-          <p>Nenhuma herois encontrado</p>
+          <p>Nenhuma heroi encontrado</p>
         </span>
       ) : (
-        heroes.map((hero) => <HeroItem key={hero.id} {...hero} />)
+        <div className="flex flex-wrap gap-3 min-[420px]:justify-center">
+          {heroes.map((hero) => (
+            <HeroItem key={hero.id} {...hero} />
+          ))}
+        </div>
       )}
     </div>
   );
