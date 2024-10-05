@@ -40,9 +40,9 @@
 
 **Componentes Necessários:**
 
-- [ ] `HeroList`: Componente que exibe a lista de heróis.
-- [ ] `HeroItem`: Componente que representa um herói individual com opções de editar e excluir.
-- [ ] `HeroForm`: Componente para criar e editar heróis.
+- [x] `HeroList`: Componente que exibe a lista de heróis.
+- [x] `HeroItem`: Componente que representa um herói individual com opções de editar e excluir.
+- [x] `HeroForm`: Componente para criar e editar heróis.
 
 ### Backend (Node + NestJS + TypeScript + Banco de Dados Relacional ou Não Relacional)
 
@@ -73,9 +73,9 @@
 **Frontend:**
 
 - [ ] Utilizar React com TypeScript.
-- [ ]Utilizar Axios ou Fetch para fazer requisições HTTP ao backend.
-- [ ]Gerenciar o estado da aplicação utilizando o contexto do React ou uma biblioteca de gerenciamento de estado como Redux ou Zustand.
-- [ ]Uso do SWR será considerado uma habilidade valorizada.
+- [ ] Utilizar Axios ou Fetch para fazer requisições HTTP ao backend.
+- [ ] Gerenciar o estado da aplicação utilizando o contexto do React ou uma biblioteca de gerenciamento de estado como Redux ou Zustand.
+- [ ] Uso do SWR será considerado uma habilidade valorizada.
 - [ ] É opcional utilizar a API de personagens da Marvel.
 
 **Backend:**

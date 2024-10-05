@@ -58,6 +58,7 @@
         "newlines-between": "always"
       }
     ],
+    "import/no-unresolved" : "off",
     "import/no-extraneous-dependencies" : "off",
     "react/button-has-type" :"off",
     "@typescript-eslint/naming-convention": [
