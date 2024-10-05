@@ -7,16 +7,16 @@ interface IGlobalStore {
 
   addHero(hero: IHero): void;
   updateHeroe(heroId: String): void;
-  removeTodo(todoId: string): void;
+  removeHero(todoId: string): void;
 }
 
 const globalStore = createStore<IGlobalStore>((setState) => ({
   heroes: [],
 
-  addHero: ({ name, origin, skill }: IHero) => {
+  addHero: ({ name, origin, skill, id }: IHero) => {
     setState((prevState) => ({
       heroes: prevState.heroes.concat({
-        id: Date.now().toString(),
+        id,
         name,
         origin,
         skill,
@@ -32,7 +32,7 @@ const globalStore = createStore<IGlobalStore>((setState) => ({
     }));
   },
 
-  removeTodo: (heroId: string) => {
+  removeHero: (heroId: string) => {
     setState((prevState) => ({
       heroes: prevState.heroes.filter((hero) => hero.id !== heroId),
     }));
