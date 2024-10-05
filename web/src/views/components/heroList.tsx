@@ -1,4 +1,4 @@
-import { IHero } from "@app/entities/IHero";
+import globalStore from "@app/store/globalStore";
 import {
   CircleOff,
   LayoutList,
@@ -9,14 +9,10 @@ import {
 
 import HeroItem from "./heroItem";
 
-const heroes: IHero[] = [
-  { id: 1, name: "Superman", skill: "Super Força", origin: "Krypton" },
-  { id: 2, name: "Batman", skill: "Inteligência", origin: "Terra" },
-  { id: 3, name: "Wonder", skill: "Velocidade", origin: "Terra" },
-];
-const lengthHeroes = heroes.length;
-
 function HeroList() {
+  const heroes = globalStore.useStore((state) => state.heroes);
+  const lengthHeroes = heroes.length;
+
   return (
     <div className="flex flex-col gap-4 my-5">
       <div className="flex items-center justify-between">
