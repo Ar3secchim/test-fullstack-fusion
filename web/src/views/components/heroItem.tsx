@@ -25,7 +25,7 @@ function HeroItem({ ...props }: IHero) {
         />
       </div>
 
-      <h2 className="text-lg font-medium text-center">{props.name}</h2>
+      <h2 className="text-xl font-bold text-center">{props.name}</h2>
 
       <span className="flex justify-between">
         <Label>
