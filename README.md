@@ -72,11 +72,11 @@
 
 **Frontend:**
 
-- [ ] Utilizar React com TypeScript.
+- [x] Utilizar React com TypeScript.
 - [ ] Utilizar Axios ou Fetch para fazer requisições HTTP ao backend.
-- [ ] Gerenciar o estado da aplicação utilizando o contexto do React ou uma biblioteca de gerenciamento de estado como Redux ou Zustand.
+- [x] Gerenciar o estado da aplicação utilizando o contexto do React ou uma biblioteca de gerenciamento de estado como Redux ou Zustand.
+  - Por atualmente estou estudando mais fundo sobre gerenciamento de estados optei por construir uma store - um repositório centralizado de estado da aplicação - personalizada para poder mais simples de entender e usar, especialmente para projetos menores.
 - [ ] Uso do SWR será considerado uma habilidade valorizada.
-- [ ] É opcional utilizar a API de personagens da Marvel.
 
 **Backend:**
 

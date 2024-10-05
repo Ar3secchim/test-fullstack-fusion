@@ -1,5 +1,5 @@
 export interface IHero {
-  id: number;
+  id: string;
   name: string;
   origin: string;
   skill: string;
