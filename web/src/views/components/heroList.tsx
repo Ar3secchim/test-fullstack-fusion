@@ -16,8 +16,6 @@ function HeroList() {
   const heroes = globalStore.useStore((state) => state.heroes);
   const lengthHeroes = heroes.length;
 
-  console.log(stateModalOpen);
-
   return (
     <div className="flex flex-col gap-4 my-5">
       {stateModalOpen && <Modal />}

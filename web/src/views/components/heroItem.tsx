@@ -9,11 +9,24 @@ import Label from "./label";
 function HeroItem({ ...props }: IHero) {
   const removeHeroe = globalStore.useStore((state) => state.removeHero);
   const openModal = modalStore.useStore((state) => state.openModal);
+  const setSelectedHero = globalStore.useStore(
+    (state) => state.setSelectedHero,
+  );
+
+  const openModalWithHero = (hero: IHero) => {
+    setSelectedHero(hero);
+    openModal();
+  };
+
+  console.log(props.id);
 
   return (
     <div className="flex flex-col w-60 p-2 rounded-xl border drop-shadow-sm gap-4">
       <div className="flex justify-between">
-        <Button className="bg-transparent w-11" onClick={() => openModal()}>
+        <Button
+          className="bg-transparent w-11"
+          onClick={() => openModalWithHero(props)}
+        >
           <PenLine color="#000000" />
         </Button>
 
