@@ -1,5 +1,6 @@
 import { IHero } from "@app/entities/IHero";
 import globalStore from "@app/store/globalStore";
+import modalStore from "@app/store/modalStore";
 import { MapPinCheckInside, PenLine, Swords, Trash2 } from "lucide-react";
 
 import Button from "./button";
@@ -7,15 +8,12 @@ import Label from "./label";
 
 function HeroItem({ ...props }: IHero) {
   const removeHeroe = globalStore.useStore((state) => state.removeHero);
-  const updateHeroe = globalStore.useStore((state) => state.updateHeroe);
+  const openModal = modalStore.useStore((state) => state.openModal);
 
   return (
     <div className="flex flex-col w-60 p-2 rounded-xl border drop-shadow-sm gap-4">
       <div className="flex justify-between">
-        <Button
-          className="bg-transparent w-11"
-          onClick={() => updateHeroe(props.id)}
-        >
+        <Button className="bg-transparent w-11" onClick={() => openModal()}>
           <PenLine color="#000000" />
         </Button>
 

@@ -1,4 +1,5 @@
 import globalStore from "@app/store/globalStore";
+import modalStore from "@app/store/modalStore";
 import {
   CircleOff,
   LayoutList,
@@ -8,13 +9,18 @@ import {
 } from "lucide-react";
 
 import HeroItem from "./heroItem";
+import Modal from "./modal";
 
 function HeroList() {
+  const stateModalOpen = modalStore.useStore((state) => state.isModalOpen);
   const heroes = globalStore.useStore((state) => state.heroes);
   const lengthHeroes = heroes.length;
 
+  console.log(stateModalOpen);
+
   return (
     <div className="flex flex-col gap-4 my-5">
+      {stateModalOpen && <Modal />}
       <div className="flex items-center justify-between">
         <h2 className="text-xl my-4 inline-flex items-center gap-2 md:text-2xl font-medium ">
           <TableCellsMerge size={26} /> Quadro de Heróis
