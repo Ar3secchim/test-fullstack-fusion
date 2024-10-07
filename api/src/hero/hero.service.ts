@@ -12,15 +12,11 @@ export class HeroService {
     return `This action returns all hero`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} hero`;
-  }
-
-  update(id: number, updateHeroDto: UpdateHeroDto) {
+  update(id: string, updateHeroDto: UpdateHeroDto) {
     return updateHeroDto;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} hero`;
   }
 }

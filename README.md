@@ -53,7 +53,7 @@
   - **Método:** POST
   - **Descrição:** Cria um novo herói. Os dados do herói (nome, habilidades, e origem) devem ser enviados no corpo da requisição. O cadastro deve ser predefinido a heróis que já existem no universo Marvel.
 
-- [ ] **Listar Heróis**
+- [x] **Listar Heróis**
   - **Endpoint:** `/heroes`
   - **Método:** GET
   - **Descrição:** Retorna a lista de todos os heróis.
