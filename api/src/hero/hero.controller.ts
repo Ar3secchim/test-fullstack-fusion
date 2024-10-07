@@ -25,12 +25,12 @@ export class HeroController {
     return this.heroService.findAll();
   }
 
-  @Put('/heroes/id')
+  @Put('/heroes/:id')
   update(@Param('id') id: string, @Body() updateHeroDto: UpdateHeroDto) {
     return this.heroService.update(id, updateHeroDto);
   }
 
-  @Delete('/heroes/id')
+  @Delete('/heroes/:id')
   remove(@Param('id') id: string) {
     return this.heroService.remove(id);
   }
