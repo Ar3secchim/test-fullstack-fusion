@@ -17,7 +17,7 @@ function HeroList() {
     <div className="flex flex-col gap-4 my-5">
       <div className="flex items-center justify-between">
         <h2 className="text-xl my-4 inline-flex items-center gap-2 md:text-2xl font-medium ">
-          <TableCellsMerge size={26} /> Quadro de Herois
+          <TableCellsMerge size={26} /> Quadro de Heróis
         </h2>
 
         {lengthHeroes === 0 && (
@@ -30,7 +30,7 @@ function HeroList() {
         {lengthHeroes > 0 && (
           <span className="text-xs flex items-center rounded-lg bg-purple-300  gap-2 p-2 h-fit">
             <LayoutList size={16} />
-            Total de herois: {lengthHeroes}
+            Total de Heróis: {lengthHeroes}
           </span>
         )}
       </div>
@@ -41,7 +41,7 @@ function HeroList() {
             <Wind size={40} />
             <Leaf size={18} />
           </span>
-          <p>Nenhuma heroi encontrado</p>
+          <p>Nenhuma herói encontrado</p>
         </span>
       ) : (
         <div className="flex flex-wrap gap-3 min-[420px]:justify-center">

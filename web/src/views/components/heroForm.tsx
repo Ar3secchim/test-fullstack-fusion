@@ -6,22 +6,30 @@ import Button from "./button";
 import Input from "./input";
 
 export function FormHeroComponent() {
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const originRef = useRef<HTMLInputElement | null>(null);
+  const skillRef = useRef<HTMLInputElement | null>(null);
   const addHero = globalStore.useStore((state) => state.addHero);
 
   const handlerSubmit = (event: FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
 
-    if (inputRef.current?.value) {
+    if (
+      nameRef.current?.value &&
+      originRef.current?.value &&
+      skillRef.current?.value
+    ) {
       const hero = {
         id: String(Math.random()),
-        name: inputRef.current.value,
-        origin: "Terra",
-        skill: "Voar",
+        name: nameRef.current.value,
+        origin: originRef.current.value,
+        skill: skillRef.current.value,
       };
 
       addHero(hero);
-      inputRef.current.value = "";
+      nameRef.current.value = "";
+      originRef.current.value = "";
+      skillRef.current.value = "";
     }
   };
 
@@ -29,16 +37,30 @@ export function FormHeroComponent() {
     <form onSubmit={handlerSubmit}>
       <h3 className="text-xl font-medium inline-flex gap-2 items-center lg:justify-start lg:text-3xl">
         <PaperclipIcon size={26} />
-        Adicionar um heroi
+        Adicionar um herói
       </h3>
 
-      <div className="flex mt-6 justify-between flex-col gap-3  md:flex-row ">
+      <div className="flex mt-6 flex-col gap-4 items-end ">
         <Input
-          className="w-full"
-          placeholder="Digite o nome do heroi"
-          ref={inputRef}
+          label="Nome"
+          placeholder="Digite o nome do herói"
+          ref={nameRef}
         />
-        <Button className="md:w-60">Adicionar herois</Button>
+
+        <div className="w-full flex flex-col gap-4 justify-between md:flex-row">
+          <Input
+            label="Origem"
+            placeholder="Digite a origem do herói"
+            ref={originRef}
+          />
+
+          <Input
+            label="Habilidade"
+            placeholder="Digite a habilidade do herói"
+            ref={skillRef}
+          />
+        </div>
+        <Button className="md:w-48 hover:bg-purple-950">Adicionar</Button>
       </div>
     </form>
   );
