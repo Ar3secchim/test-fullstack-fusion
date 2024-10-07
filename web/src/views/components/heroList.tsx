@@ -27,7 +27,7 @@ function HeroList() {
         {lengthHeroes === 0 && (
           <span className="text-xs flex items-center rounded-lg bg-purple-300 gap-2 p-2 h-fit">
             <CircleOff size={16} />
-            Nenhuma tarefa encontrada
+            Nenhuma herói encontrada
           </span>
         )}
 
