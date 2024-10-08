@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
@@ -26,11 +26,42 @@ export class HeroService {
     return heroes;
   }
 
-  update(id: string, updateHeroDto: UpdateHeroDto) {
-    return updateHeroDto;
+  async update(id: string, updateHeroDto: UpdateHeroDto) {
+    const { name, origin, skill } = updateHeroDto;
+
+    const heroTaken = await this.prismaService.hero.findUnique({
+      where: { id: id },
+    });
+
+    if (!heroTaken) {
+      throw new BadRequestException('Hero not found');
+    }
+
+    const heroUpdate = await this.prismaService.hero.update({
+      where: { id: id },
+      data: {
+        name,
+        origin,
+        skill,
+      },
+    });
+
+    return heroUpdate;
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} hero`;
+  async remove(id: string) {
+    const heroTaken = await this.prismaService.hero.findUnique({
+      where: { id: id },
+    });
+
+    if (!heroTaken) {
+      throw new BadRequestException('Hero not found');
+    }
+
+    await this.prismaService.hero.delete({
+      where: { id: id },
+    });
+
+    return 'Hero deleted';
   }
 }
