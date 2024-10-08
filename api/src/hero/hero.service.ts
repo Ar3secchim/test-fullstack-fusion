@@ -1,15 +1,29 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/database/prisma.service';
 import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
 
 @Injectable()
 export class HeroService {
-  create(createHeroDto: CreateHeroDto) {
-    return createHeroDto;
+  constructor(private readonly prismaService: PrismaService) {}
+
+  async create(createHeroDto: CreateHeroDto) {
+    const { name, origin, skill } = createHeroDto;
+
+    const hero = await this.prismaService.hero.create({
+      data: {
+        name,
+        origin,
+        skill,
+      },
+    });
+
+    return hero;
   }
 
   findAll() {
-    return `This action returns all hero`;
+    const heroes = this.prismaService.hero.findMany();
+    return heroes;
   }
 
   update(id: string, updateHeroDto: UpdateHeroDto) {
