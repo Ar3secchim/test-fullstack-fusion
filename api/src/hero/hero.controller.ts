@@ -11,7 +11,7 @@ import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
 import { HeroService } from './hero.service';
 
-@Controller('hero')
+@Controller()
 export class HeroController {
   constructor(private readonly heroService: HeroService) {}
 
