@@ -1,5 +1,15 @@
+import { IsNotEmpty, IsString } from 'class-validator';
+
 export class CreateHeroDto {
+  @IsString()
+  @IsNotEmpty()
   name: string;
+
+  @IsString()
+  @IsNotEmpty()
   skill: string;
-  origin: number;
+
+  @IsString()
+  @IsNotEmpty()
+  origin: string;
 }
