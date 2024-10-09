@@ -16,3 +16,10 @@ model Hero {
 
   @@map("heroes")
 }
+
+model HeroesValidation {
+  id   String @id @default(uuid()) @db.Uuid()
+  name String
+
+  @@map("heroesValidation")
+}
