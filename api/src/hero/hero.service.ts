@@ -10,17 +10,17 @@ export class HeroService {
   async create(createHeroDto: CreateHeroDto) {
     const { name, origin, skill } = createHeroDto;
 
-    const heroValid = await this.prismaService.heroesValidation.findFirst({
-      where: {
-        name: {
-          contains: name,
-        },
-      },
-    });
+    // const heroValid = await this.prismaService.heroesValidation.findFirst({
+    //   where: {
+    //     name: {
+    //       contains: name,
+    //     },
+    //   },
+    // });
 
-    if (!heroValid) {
-      throw new BadRequestException('Hero not found in Marvel');
-    }
+    // if (!heroValid) {
+    //   throw new BadRequestException('Hero not found in Marvel');
+    // }
 
     const hero = await this.prismaService.hero.create({
       data: {
