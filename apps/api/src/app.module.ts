@@ -10,10 +10,11 @@ import { ValidateHeroModule } from './validHeroes/validHeroes.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../..', 'client', 'dist'),
-      exclude: ['api/*'],
+      rootPath: join(__dirname, '../../', 'client/dist'),
     }),
+
     HeroModule,
     ValidateHeroModule,
   ],
