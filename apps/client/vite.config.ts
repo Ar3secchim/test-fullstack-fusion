@@ -9,7 +9,13 @@ export default defineConfig({
   server: {
     open: true,
     port: 3000,
-    // host: 'local.renaradev.com.br',
+    //host: 'local.renaradev.com.br',
+    proxy: {
+      "/api": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
+    },
   },
   resolve: {
     alias: {
