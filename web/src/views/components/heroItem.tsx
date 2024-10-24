@@ -18,7 +18,17 @@ function HeroItem({ ...props }: IHero) {
     openModal();
   };
 
-  console.log(props.id);
+  const removeHero = async (heroId: string) => {
+    try {
+      await fetch(`http://localhost:5000/heroes/${heroId}`, {
+        method: "DELETE",
+      });
+
+      removeHeroe(heroId);
+    } catch (error) {
+      console.error("Error removing hero:", error);
+    }
+  };
 
   return (
     <div className="flex flex-col w-60 p-2 rounded-xl border drop-shadow-sm gap-4">
@@ -32,7 +42,7 @@ function HeroItem({ ...props }: IHero) {
 
         <Button
           className="bg-transparent w-11"
-          onClick={() => removeHeroe(props.id)}
+          onClick={() => removeHero(props.id)}
         >
           <Trash2 color="#e65555" />
         </Button>

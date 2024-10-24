@@ -26,9 +26,22 @@ function Modal() {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    updateHero(heroData);
+
+    try {
+      await fetch(`http://localhost:5000/heroes/${heroData.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(heroData),
+      });
+
+      updateHero(heroData);
+    } catch (error) {
+      console.error("Error updating hero:", error);
+    }
     closeModal();
   };
 
