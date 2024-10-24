@@ -1,4 +1,4 @@
-import FormHero from "@views/components/heroForm";
+import FormHero from "@views/components/formHero";
 import HeroList from "@views/components/heroList";
 import LayoutRoot from "@views/layouts/layoutRoot";
 

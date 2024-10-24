@@ -4,16 +4,28 @@ import createStore from "./createStore";
 
 interface IGlobalStore {
   heroes: IHero[];
+  selectedHero: IHero;
 
+  setSelectedHero: (hero: IHero) => void;
   addHero(hero: IHero): void;
-  updateHeroe(heroId: String): void;
+  updateHero: (hero: IHero) => void;
   removeHero(todoId: string): void;
 }
 
 const globalStore = createStore<IGlobalStore>((setState) => ({
   heroes: [],
+  selectedHero: {
+    id: "",
+    name: "",
+    origin: "",
+    skill: "",
+  },
 
-  addHero: ({ name, origin, skill, id }: IHero) => {
+  setSelectedHero: (hero) => {
+    setState({ selectedHero: hero });
+  },
+
+  addHero: ({ id, name, origin, skill }: IHero) => {
     setState((prevState) => ({
       heroes: prevState.heroes.concat({
         id,
@@ -24,10 +36,10 @@ const globalStore = createStore<IGlobalStore>((setState) => ({
     }));
   },
 
-  updateHeroe: (heroId: string) => {
+  updateHero: (updatedHero) => {
     setState((prevState) => ({
       heroes: prevState.heroes.map((hero) =>
-        hero.id === heroId ? { ...hero } : hero,
+        hero.id === updatedHero.id ? updatedHero : hero,
       ),
     }));
   },

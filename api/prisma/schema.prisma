@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Hero {
+  id        String   @id @default(uuid()) @db.Uuid()
+  name      String
+  skill     String
+  origin    String
+  createdAt DateTime @default(now())
+
+  @@map("heroes")
+}
+
+model HeroesValidation {
+  id   String @id @default(uuid()) @db.Uuid()
+  name String
+
+  @@map("heroesValidation")
+}
