@@ -1,11 +1,12 @@
 {
   "name": "front",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "check-types": "tsc --noEmit",
     "preview": "vite preview",
     "prepare": "husky"
   },

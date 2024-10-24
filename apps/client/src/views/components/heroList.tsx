@@ -20,7 +20,7 @@ function HeroList() {
   useEffect(() => {
     const fetchHeroes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/heroes");
+        const response = await fetch(`api/heroes`);
         const data = await response.json();
         globalStore.setState({ heroes: data });
       } catch (error) {

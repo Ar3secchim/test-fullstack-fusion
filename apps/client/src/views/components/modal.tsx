@@ -30,7 +30,7 @@ function Modal() {
     e.preventDefault();
 
     try {
-      await fetch(`http://localhost:5000/heroes/${heroData.id}`, {
+      await fetch(`api/heroes/${heroData.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
