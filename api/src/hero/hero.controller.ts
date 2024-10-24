@@ -15,6 +15,11 @@ import { HeroService } from './hero.service';
 export class HeroController {
   constructor(private readonly heroService: HeroService) {}
 
+  @Get('/')
+  get() {
+    return this.heroService.get();
+  }
+
   @Post('/heroes')
   create(@Body() createHeroDto: CreateHeroDto) {
     return this.heroService.create(createHeroDto);

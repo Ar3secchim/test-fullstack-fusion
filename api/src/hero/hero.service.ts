@@ -6,6 +6,13 @@ import { UpdateHeroDto } from './dto/update-hero.dto';
 @Injectable()
 export class HeroService {
   constructor(private readonly prismaService: PrismaService) {}
+  async get() {
+    const response = {
+      message: 'API 200 ',
+    };
+
+    return response;
+  }
 
   async create(createHeroDto: CreateHeroDto) {
     const { name, origin, skill } = createHeroDto;
