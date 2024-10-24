@@ -15,6 +15,7 @@ interface IGlobalStore {
 const globalStore = createStore<IGlobalStore>((setState) => ({
   heroes: [],
   selectedHero: {
+    id: "",
     name: "",
     origin: "",
     skill: "",
@@ -24,9 +25,10 @@ const globalStore = createStore<IGlobalStore>((setState) => ({
     setState({ selectedHero: hero });
   },
 
-  addHero: ({ name, origin, skill }: IHero) => {
+  addHero: ({ id, name, origin, skill }: IHero) => {
     setState((prevState) => ({
       heroes: prevState.heroes.concat({
+        id,
         name,
         origin,
         skill,

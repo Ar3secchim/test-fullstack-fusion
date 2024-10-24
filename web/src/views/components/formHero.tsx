@@ -5,8 +5,15 @@ import { FormProvider, useForm } from "react-hook-form";
 import Button from "./button";
 import Input from "./input";
 
+// Nova interface sem o campo `id`
+interface IHeroForm {
+  name: string;
+  origin: string;
+  skill: string;
+}
+
 export function FormHeroComponent() {
-  const createUseForm = useForm({
+  const createUseForm = useForm<IHeroForm>({
     defaultValues: {
       name: "",
       origin: "",
@@ -15,7 +22,7 @@ export function FormHeroComponent() {
   });
   const addHero = globalStore.useStore((state) => state.addHero);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: IHeroForm) => {
     const hero = {
       name: data.name,
       origin: data.origin,
@@ -23,18 +30,18 @@ export function FormHeroComponent() {
     };
 
     try {
-      fetch("http://localhost:5000/heroes", {
+      const response = await fetch(`${process.env.URL_API}/heroes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(hero),
       });
+      const savedHero = await response.json();
+      addHero(savedHero);
     } catch (error) {
       console.log(error);
     }
-
-    addHero(hero);
   };
 
   const {
