@@ -2,7 +2,7 @@
   "name": "nestjs-react-monorepo",
   "version": "1.0.0",
   "description": "",
-  "private": false,
+  "private": true,
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
@@ -12,10 +12,10 @@
   "author": "Renara Secchim",
   "license": "ISC",
   "devDependencies": {
-    "turbo": "lastest "
+    "turbo": "^2.2.3"
   },
   "workspaces": [
     "apps/*"
-  ], 
-  "packageManager": "yarn@1.22.19"
+  ],
+  "packageManager": "yarn@1.22.22"
 }
