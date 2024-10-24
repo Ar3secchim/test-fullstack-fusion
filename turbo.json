@@ -2,15 +2,17 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "dev": {
-      "cache": false
+      "cache": false,
+      "env": ["DATABASE_URL", "DIRECT_URL"]
     },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"],
-      "env": [".env"]
+      "env": ["DATABASE_URL", "DIRECT_URL"]
     },
     "start": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "env": ["DATABASE_URL", "DIRECT_URL"]
     }
   },
   "globalEnv": [".env"]
