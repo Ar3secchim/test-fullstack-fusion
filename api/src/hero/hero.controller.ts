@@ -11,32 +11,27 @@ import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
 import { HeroService } from './hero.service';
 
-@Controller('hero')
+@Controller()
 export class HeroController {
   constructor(private readonly heroService: HeroService) {}
 
-  @Post()
+  @Post('/heroes')
   create(@Body() createHeroDto: CreateHeroDto) {
     return this.heroService.create(createHeroDto);
   }
 
-  @Get()
+  @Get('/heroes')
   findAll() {
     return this.heroService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.heroService.findOne(+id);
-  }
-
-  @Put(':id')
+  @Put('/heroes/:id')
   update(@Param('id') id: string, @Body() updateHeroDto: UpdateHeroDto) {
-    return this.heroService.update(+id, updateHeroDto);
+    return this.heroService.update(id, updateHeroDto);
   }
 
-  @Delete(':id')
+  @Delete('/heroes/:id')
   remove(@Param('id') id: string) {
-    return this.heroService.remove(+id);
+    return this.heroService.remove(id);
   }
 }

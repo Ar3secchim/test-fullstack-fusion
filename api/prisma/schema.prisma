@@ -8,11 +8,18 @@ datasource db {
 }
 
 model Hero {
-  id        String   @id @db.Uuid()
+  id        String   @id @default(uuid()) @db.Uuid()
   name      String
   skill     String
   origin    String
   createdAt DateTime @default(now())
 
   @@map("heroes")
+}
+
+model HeroesValidation {
+  id   String @id @default(uuid()) @db.Uuid()
+  name String
+
+  @@map("heroesValidation")
 }

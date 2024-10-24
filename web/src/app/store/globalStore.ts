@@ -25,7 +25,7 @@ const globalStore = createStore<IGlobalStore>((setState) => ({
     setState({ selectedHero: hero });
   },
 
-  addHero: ({ name, origin, skill, id }: IHero) => {
+  addHero: ({ id, name, origin, skill }: IHero) => {
     setState((prevState) => ({
       heroes: prevState.heroes.concat({
         id,

@@ -7,6 +7,7 @@ import {
   TableCellsMerge,
   Wind,
 } from "lucide-react";
+import { useEffect } from "react";
 
 import HeroItem from "./heroItem";
 import Modal from "./modal";
@@ -15,6 +16,20 @@ function HeroList() {
   const stateModalOpen = modalStore.useStore((state) => state.isModalOpen);
   const heroes = globalStore.useStore((state) => state.heroes);
   const lengthHeroes = heroes.length;
+
+  useEffect(() => {
+    const fetchHeroes = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/heroes");
+        const data = await response.json();
+        globalStore.setState({ heroes: data });
+      } catch (error) {
+        console.error("Failed to fetch heroes:", error);
+      }
+    };
+
+    fetchHeroes();
+  }, [heroes]);
 
   return (
     <div className="flex flex-col gap-4 my-5">

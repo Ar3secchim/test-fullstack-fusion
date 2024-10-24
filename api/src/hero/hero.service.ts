@@ -1,26 +1,77 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/database/prisma.service';
 import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
 
 @Injectable()
 export class HeroService {
-  create(createHeroDto: CreateHeroDto) {
-    return createHeroDto;
+  constructor(private readonly prismaService: PrismaService) {}
+
+  async create(createHeroDto: CreateHeroDto) {
+    const { name, origin, skill } = createHeroDto;
+
+    // const heroValid = await this.prismaService.heroesValidation.findFirst({
+    //   where: {
+    //     name: {
+    //       contains: name,
+    //     },
+    //   },
+    // });
+
+    // if (!heroValid) {
+    //   throw new BadRequestException('Hero not found in Marvel');
+    // }
+
+    const hero = await this.prismaService.hero.create({
+      data: {
+        name,
+        origin,
+        skill,
+      },
+    });
+
+    return hero;
   }
 
   findAll() {
-    return `This action returns all hero`;
+    const heroes = this.prismaService.hero.findMany();
+    return heroes;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} hero`;
+  async update(id: string, updateHeroDto: UpdateHeroDto) {
+    const { name, origin, skill } = updateHeroDto;
+
+    const heroTaken = await this.prismaService.hero.findUnique({
+      where: { id: id },
+    });
+
+    if (!heroTaken) {
+      throw new BadRequestException('Hero not found');
+    }
+
+    const heroUpdate = await this.prismaService.hero.update({
+      where: { id: id },
+      data: {
+        name,
+        origin,
+        skill,
+      },
+    });
+
+    return heroUpdate;
   }
 
-  update(id: number, updateHeroDto: UpdateHeroDto) {
-    return updateHeroDto;
-  }
+  async remove(id: string) {
+    const heroTaken = await this.prismaService.hero.findUnique({
+      where: { id: id },
+    });
 
-  remove(id: number) {
-    return `This action removes a #${id} hero`;
+    if (!heroTaken) {
+      throw new BadRequestException('Hero not found');
+    }
+
+    await this.prismaService.hero.delete({
+      where: { id: id },
+    });
   }
 }
