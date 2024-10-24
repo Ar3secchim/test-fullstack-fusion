@@ -30,7 +30,7 @@ function Modal() {
     e.preventDefault();
 
     try {
-      await fetch(`${process.env.URL_API}/heroes/${heroData.id}`, {
+      await fetch(`api/heroes/${heroData.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

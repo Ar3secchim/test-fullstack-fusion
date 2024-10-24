@@ -20,7 +20,7 @@ function HeroItem({ ...props }: IHero) {
 
   const removeHero = async (heroId: string) => {
     try {
-      await fetch(`${process.env.URL_API}/heroes/${heroId}`, {
+      await fetch(`api/heroes/${heroId}`, {
         method: "DELETE",
       });
 

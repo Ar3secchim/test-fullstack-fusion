@@ -30,7 +30,7 @@ export function FormHeroComponent() {
     };
 
     try {
-      const response = await fetch(`${process.env.URL_API}/heroes`, {
+      const response = await fetch(`/api/heroes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

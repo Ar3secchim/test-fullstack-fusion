@@ -20,7 +20,7 @@ function HeroList() {
   useEffect(() => {
     const fetchHeroes = async () => {
       try {
-        const response = await fetch(`${process.env.URL_API}/heroes`);
+        const response = await fetch(`/api/heroes`);
         const data = await response.json();
         globalStore.setState({ heroes: data });
       } catch (error) {
