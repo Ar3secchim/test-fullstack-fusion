@@ -1,11 +1,11 @@
 import globalStore from "@app/store/globalStore";
+import axios from "axios";
 import { PaperclipIcon } from "lucide-react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import Button from "./button";
 import Input from "./input";
 
-// Nova interface sem o campo `id`
 interface IHeroForm {
   name: string;
   origin: string;
@@ -22,6 +22,13 @@ export function FormHeroComponent() {
   });
   const addHero = globalStore.useStore((state) => state.addHero);
 
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+    reset,
+  } = createUseForm;
+
   const onSubmit = async (data: IHeroForm) => {
     const hero = {
       name: data.name,
@@ -30,25 +37,19 @@ export function FormHeroComponent() {
     };
 
     try {
-      const response = await fetch(`/api/heroes`, {
-        method: "POST",
+      const response = await axios.post(`/api/heroes`, hero, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(hero),
       });
-      const savedHero = await response.json();
-      addHero(savedHero);
+
+      addHero(response.data);
+
+      reset();
     } catch (error) {
-      console.log(error);
+      alert(`Error creata hero: ${error.message}`);
     }
   };
-
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-  } = createUseForm;
 
   return (
     <FormProvider {...createUseForm}>
@@ -58,7 +59,7 @@ export function FormHeroComponent() {
           Adicionar um herói
         </h3>
 
-        <div className="flex mt-6 flex-col gap-4 items-end ">
+        <div className="flex mt-6 flex-col gap-4 items-start md:items-end">
           <Input
             label="Nome"
             placeholder="Digite o nome do herói"
@@ -74,28 +75,33 @@ export function FormHeroComponent() {
             <span className="text-red-500 text-sm">{errors.name.message}</span>
           )}
 
-          <div className="w-full flex flex-col gap-4 justify-between md:flex-row">
-            <Input
-              label="Origem"
-              placeholder="Digite a origem do herói"
-              {...register("origin", { required: "Campo obrigatório" })}
-            />
-            {errors.origin && (
-              <span className="text-red-500 text-sm">
-                {errors.origin.message}
-              </span>
-            )}
+          <div className="w-full flex flex-col gap-2 justify-between md:flex-row ">
+            <span className="flex-1">
+              <Input
+                label="Origem"
+                placeholder="Digite a origem do herói"
+                {...register("origin", { required: "Campo obrigatório" })}
+              />
 
-            <Input
-              label="Habilidade"
-              placeholder="Digite a habilidade do herói"
-              {...register("skill", { required: "Campo obrigatório" })}
-            />
-            {errors.skill && (
-              <span className="text-red-500 text-sm">
-                {errors.skill.message}
-              </span>
-            )}
+              {errors.origin && (
+                <span className="text-red-500 text-sm">
+                  {errors.origin.message}
+                </span>
+              )}
+            </span>
+
+            <span className="flex-1">
+              <Input
+                label="Habilidade"
+                placeholder="Digite a habilidade do herói"
+                {...register("skill", { required: "Campo obrigatório" })}
+              />
+              {errors.skill && (
+                <span className="text-red-500 text-sm">
+                  {errors.skill.message}
+                </span>
+              )}
+            </span>
           </div>
           <Button className="md:w-48 hover:bg-purple-950">Adicionar</Button>
         </div>

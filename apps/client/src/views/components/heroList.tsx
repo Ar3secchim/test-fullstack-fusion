@@ -1,5 +1,6 @@
 import globalStore from "@app/store/globalStore";
 import modalStore from "@app/store/modalStore";
+import axios from "axios";
 import {
   CircleOff,
   LayoutList,
@@ -20,11 +21,11 @@ function HeroList() {
   useEffect(() => {
     const fetchHeroes = async () => {
       try {
-        const response = await fetch(`api/heroes`);
-        const data = await response.json();
+        const response = await axios.get(`api/heroes`);
+        const { data } = response;
         globalStore.setState({ heroes: data });
       } catch (error) {
-        console.error("Failed to fetch heroes:", error);
+        console.error("Failed to get heroes:", error);
       }
     };
 

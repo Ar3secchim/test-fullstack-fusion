@@ -1,6 +1,7 @@
 import { IHero } from "@app/entities/IHero";
 import globalStore from "@app/store/globalStore";
 import modalStore from "@app/store/modalStore";
+import axios from "axios";
 import { MapPinCheckInside, PenLine, Swords, Trash2 } from "lucide-react";
 
 import Button from "./button";
@@ -20,13 +21,11 @@ function HeroItem({ ...props }: IHero) {
 
   const removeHero = async (heroId: string) => {
     try {
-      await fetch(`api/heroes/${heroId}`, {
-        method: "DELETE",
-      });
-
+      await axios.delete(`api/heroes/${heroId}`);
       removeHeroe(heroId);
+      alert("Herói removido com sucesso");
     } catch (error) {
-      console.error("Error removing hero:", error);
+      alert("Error removing hero:", error.message);
     }
   };
 
@@ -61,12 +60,17 @@ function HeroItem({ ...props }: IHero) {
       <span className="flex justify-between">
         <Label>
           <MapPinCheckInside size={16} />
-          {props.origin}
+          {props.origin.length > 10
+            ? `${props.origin.substring(0, 10)}...`
+            : props.origin}
         </Label>
 
         <Label>
           <Swords size={16} />
-          {props.skill}
+
+          {props.skill.length > 10
+            ? `${props.skill.substring(0, 10)}...`
+            : props.skill}
         </Label>
       </span>
     </div>
