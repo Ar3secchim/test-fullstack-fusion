@@ -14,6 +14,7 @@ import { ValidateHeroModule } from './validHeroes/validHeroes.module';
 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'client/dist'),
+      exclude: ['api/*'],
     }),
 
     HeroModule,
