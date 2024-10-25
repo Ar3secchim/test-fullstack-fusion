@@ -12,7 +12,7 @@ import { ValidateHeroModule } from './validHeroes/validHeroes.module';
       isGlobal: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../', 'client', 'dist'),
+      rootPath: join(__dirname, '../..', 'client', 'dist'),
     }),
     HeroModule,
     ValidateHeroModule,
