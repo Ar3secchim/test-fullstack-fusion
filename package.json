@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "start": "turbo start"
+    "start": "node apps/api/dist/main "
   },
   "keywords": [],
   "author": "Renara Secchim",
