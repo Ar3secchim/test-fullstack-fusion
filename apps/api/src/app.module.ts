@@ -11,12 +11,9 @@ import { ValidateHeroModule } from './validHeroes/validHeroes.module';
       envFilePath: ['.env', '../.env'],
       isGlobal: true,
     }),
-
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'client/dist'),
-      exclude: ['api/*'],
     }),
-
     HeroModule,
     ValidateHeroModule,
   ],
