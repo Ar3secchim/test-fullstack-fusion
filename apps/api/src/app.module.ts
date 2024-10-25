@@ -8,6 +8,7 @@ import { ValidateHeroModule } from './validHeroes/validHeroes.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: ['.env', '../.env'],
       isGlobal: true,
     }),
     ServeStaticModule.forRoot({
