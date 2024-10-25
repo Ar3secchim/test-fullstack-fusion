@@ -4,6 +4,7 @@ import modalStore from "@app/store/modalStore";
 import axios from "axios";
 import { MapPinCheckInside, PenLine, Swords, Trash2 } from "lucide-react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Button from "./button";
 import Label from "./label";
@@ -24,7 +25,7 @@ function HeroItem({ ...props }: IHero) {
     try {
       await axios.delete(`api/heroes/${heroId}`);
       removeHeroe(heroId);
-      toast.success("Herói removido com sucesso");
+      toast.warn("Herói removido com sucesso");
     } catch (error) {
       toast.error("Erro ao remover herói");
     }

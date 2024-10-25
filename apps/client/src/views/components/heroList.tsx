@@ -9,6 +9,8 @@ import {
   Wind,
 } from "lucide-react";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import HeroItem from "./heroItem";
 import Modal from "./modal";
@@ -25,12 +27,12 @@ function HeroList() {
         const { data } = response;
         globalStore.setState({ heroes: data });
       } catch (error) {
-        console.error("Failed to get heroes:", error);
+        toast.error("Erro ao buscar heróis");
       }
     };
 
     fetchHeroes();
-  }, [heroes]);
+  }, []);
 
   return (
     <div className="flex flex-col gap-4 my-5">

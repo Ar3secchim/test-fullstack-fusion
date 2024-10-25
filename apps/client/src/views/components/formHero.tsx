@@ -2,7 +2,8 @@ import globalStore from "@app/store/globalStore";
 import axios from "axios";
 import { PaperclipIcon } from "lucide-react";
 import { FormProvider, useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Button from "./button";
 import Input from "./input";
@@ -54,6 +55,7 @@ export function FormHeroComponent() {
 
   return (
     <FormProvider {...createUseForm}>
+      <ToastContainer />
       <form onSubmit={handleSubmit(onSubmit)}>
         <h3 className="text-xl font-medium inline-flex gap-2 items-center lg:justify-start lg:text-3xl">
           <PaperclipIcon size={26} />

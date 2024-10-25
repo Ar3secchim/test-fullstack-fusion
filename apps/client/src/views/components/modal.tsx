@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import Button from "./button";
 import Input from "./input";
 
