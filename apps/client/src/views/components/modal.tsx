@@ -5,6 +5,7 @@ import axios from "axios";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import Button from "./button";
 import Input from "./input";
@@ -58,9 +59,9 @@ function Modal() {
 
       updateHero(updatedHero);
       closeModal();
-      alert("Herói atualizado com sucesso");
+      toast.success("Herói atualizado com sucesso");
     } catch (error) {
-      alert(`Error updating hero: ${error.message}`);
+      toast.error(`Error updating hero`);
     }
   };
 

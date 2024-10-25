@@ -3,6 +3,7 @@ import globalStore from "@app/store/globalStore";
 import modalStore from "@app/store/modalStore";
 import axios from "axios";
 import { MapPinCheckInside, PenLine, Swords, Trash2 } from "lucide-react";
+import { toast } from "react-toastify";
 
 import Button from "./button";
 import Label from "./label";
@@ -23,9 +24,9 @@ function HeroItem({ ...props }: IHero) {
     try {
       await axios.delete(`api/heroes/${heroId}`);
       removeHeroe(heroId);
-      alert("Herói removido com sucesso");
+      toast.success("Herói removido com sucesso");
     } catch (error) {
-      alert("Error removing hero:", error.message);
+      toast.error("Erro ao remover herói");
     }
   };
 

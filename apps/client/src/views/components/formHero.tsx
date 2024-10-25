@@ -2,6 +2,7 @@ import globalStore from "@app/store/globalStore";
 import axios from "axios";
 import { PaperclipIcon } from "lucide-react";
 import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import Button from "./button";
 import Input from "./input";
@@ -44,10 +45,10 @@ export function FormHeroComponent() {
       });
 
       addHero(response.data);
-
       reset();
+      toast.success("Herói criado com sucesso");
     } catch (error) {
-      alert(`Error creata hero: ${error.message}`);
+      toast.error(`Error creata hero`);
     }
   };
 
