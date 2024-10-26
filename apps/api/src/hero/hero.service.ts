@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { ValidateHero } from 'src/validHeroes/validHeroes.service';
 import { PrismaService } from '../database/prisma.service';
+import { ValidateHero } from '../validHeroes/validHeroes.service';
 import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
 
