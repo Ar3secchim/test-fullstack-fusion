@@ -39,17 +39,20 @@ export function FormHeroComponent() {
     };
 
     try {
-      const response = await axios.post(`/api/heroes`, hero, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
+      const response = await axios.post(`/api/heroes`, hero);
+      toast.success("Herói criado com sucesso");
       addHero(response.data);
       reset();
-      toast.success("Herói criado com sucesso");
     } catch (error) {
-      toast.error(`Error creata hero`);
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error(
+          error.response.data.message ||
+          "Heroi não encontrado no mundo Marvel ",
+        );
+      } else {
+        toast.error("Erro ao criar herói");
+      }
+      console.error(error);
     }
   };
 

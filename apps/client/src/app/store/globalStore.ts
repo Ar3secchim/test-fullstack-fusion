@@ -19,19 +19,21 @@ const globalStore = createStore<IGlobalStore>((setState) => ({
     name: "",
     origin: "",
     skill: "",
+    urlImage: "",
   },
 
   setSelectedHero: (hero) => {
     setState({ selectedHero: hero });
   },
 
-  addHero: ({ id, name, origin, skill }: IHero) => {
+  addHero: ({ id, name, origin, skill, urlImage }: IHero) => {
     setState((prevState) => ({
       heroes: prevState.heroes.concat({
         id,
         name,
         origin,
         skill,
+        urlImage,
       }),
     }));
   },
