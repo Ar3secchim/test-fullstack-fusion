@@ -1,48 +1,69 @@
 import { IHero } from "@app/entities/IHero";
 import globalStore from "@app/store/globalStore";
 import modalStore from "@app/store/modalStore";
+import axios from "axios";
 import { X } from "lucide-react";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import Button from "./button";
 import Input from "./input";
 
+interface IHeroForm {
+  name: string;
+  origin: string;
+  skill: string;
+}
+
 function Modal() {
   const selectedHero = globalStore.useStore((state) => state.selectedHero);
-  const [heroData, setHeroData] = useState<IHero>(selectedHero);
+  const [heroData] = useState<IHero>(selectedHero);
 
   const closeModal = modalStore.useStore((state) => state.closeModal);
   const updateHero = globalStore.useStore((state) => state.updateHero);
 
+  const useFormHeroes = useForm<IHeroForm>({
+    defaultValues: {
+      name: heroData.name,
+      origin: heroData.origin,
+      skill: heroData.skill,
+    },
+  });
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+    reset,
+  } = useFormHeroes;
+
   useEffect(() => {
-    setHeroData(selectedHero);
-  }, [selectedHero]);
+    reset(heroData);
+  }, [heroData, reset]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setHeroData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
+  const onSubmit = async (data: IHeroForm) => {
+    const updatedHero = {
+      ...heroData,
+      name: data.name,
+      origin: data.origin,
+      skill: data.skill,
+    };
 
     try {
-      await fetch(`api/heroes/${heroData.id}`, {
-        method: "PUT",
+      await axios.put(`api/heroes/${heroData.id}`, updatedHero, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(heroData),
       });
 
-      updateHero(heroData);
+      updateHero(updatedHero);
+      closeModal();
+      toast.success("Herói atualizado com sucesso");
     } catch (error) {
-      console.error("Error updating hero:", error);
+      toast.error(`Error updating hero`);
     }
-    closeModal();
   };
 
   return (
@@ -57,46 +78,71 @@ function Modal() {
               </Button>
             </div>
 
-            <form className="relative p-6 flex-auto" onSubmit={handleSubmit}>
-              <Input
-                type="text"
-                name="name"
-                label="Nome"
-                value={heroData.name}
-                onChange={handleChange}
-                className="my-4 text-blueGray-500 text-lg leading-relaxed"
-              />
-              <Input
-                type="text"
-                name="origin"
-                label="Origem"
-                value={heroData.origin}
-                onChange={handleChange}
-                className="my-4 text-blueGray-500 text-lg leading-relaxed"
-              />
-              <Input
-                type="text"
-                name="skill"
-                label="Habilidade"
-                value={heroData.skill}
-                onChange={handleChange}
-                className="my-4 text-blueGray-500 text-lg leading-relaxed"
-              />
-              <div className="flex gap-4">
-                <Button
-                  onClick={closeModal}
-                  className="bg-red-400 hover:bg-red-950"
-                >
-                  Cancelar
-                </Button>
-                <Button
-                  type="submit"
-                  className="bg-emerald-500 text-white active:bg-emerald-600 font-bold hover:bg-emerald-700"
-                >
-                  Salvar
-                </Button>
-              </div>
-            </form>
+            <FormProvider {...useFormHeroes}>
+              <form
+                className="relative p-6 flex-auto"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <Input
+                  type="text"
+                  label="Nome"
+                  placeholder="Digite o nome do herói"
+                  {...register("name", {
+                    required: "Campo obrigatório",
+                    minLength: {
+                      value: 3,
+                      message: "Minimo 3 caractéres",
+                    },
+                  })}
+                  className="my-4 text-blueGray-500 text-lg leading-relaxed"
+                />
+                {errors.name && (
+                  <span className="text-red-500 text-sm">
+                    {errors.name.message}
+                  </span>
+                )}
+
+                <Input
+                  type="text"
+                  label="Origem"
+                  placeholder="Digite a origem do herói"
+                  {...register("origin", { required: "Campo obrigatório" })}
+                  className="my-4 text-blueGray-500 text-lg leading-relaxed"
+                />
+                {errors.origin && (
+                  <span className="text-red-500 text-sm">
+                    {errors.origin.message}
+                  </span>
+                )}
+
+                <Input
+                  type="text"
+                  label="Habilidade"
+                  {...register("skill", { required: "Campo obrigatório" })}
+                  className="my-4 text-blueGray-500 text-lg leading-relaxed"
+                />
+                {errors.skill && (
+                  <span className="text-red-500 text-sm">
+                    {errors.skill.message}
+                  </span>
+                )}
+
+                <div className="flex gap-4">
+                  <Button
+                    onClick={closeModal}
+                    className="bg-red-400 hover:bg-red-950"
+                  >
+                    Cancelar
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold hover:bg-emerald-700"
+                  >
+                    Salvar
+                  </Button>
+                </div>
+              </form>
+            </FormProvider>
           </div>
         </div>
       </div>

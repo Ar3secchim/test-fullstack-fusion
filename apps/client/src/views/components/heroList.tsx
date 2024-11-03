@@ -1,5 +1,6 @@
 import globalStore from "@app/store/globalStore";
 import modalStore from "@app/store/modalStore";
+import axios from "axios";
 import {
   CircleOff,
   LayoutList,
@@ -8,6 +9,8 @@ import {
   Wind,
 } from "lucide-react";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import HeroItem from "./heroItem";
 import Modal from "./modal";
@@ -20,16 +23,16 @@ function HeroList() {
   useEffect(() => {
     const fetchHeroes = async () => {
       try {
-        const response = await fetch(`api/heroes`);
-        const data = await response.json();
+        const response = await axios.get(`api/heroes`);
+        const { data } = response;
         globalStore.setState({ heroes: data });
       } catch (error) {
-        console.error("Failed to fetch heroes:", error);
+        toast.error("Erro ao buscar heróis");
       }
     };
 
     fetchHeroes();
-  }, [heroes]);
+  }, []);
 
   return (
     <div className="flex flex-col gap-4 my-5">

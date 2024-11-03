@@ -8,6 +8,6 @@ export class ValidateHeroController {
 
   @Post('/validHeroes')
   create(@Body() heroValidDto: HeroValidDto) {
-    return this.validHero.create(heroValidDto);
+    return this.validHero.execute(heroValidDto);
   }
 }

@@ -33,10 +33,10 @@
 
 **Página Principal:**
 
-- [ ] Exibe a lista de heróis.
-- [ ] Permite a criação de um novo herói.
-- [ ] Permite a atualização de heróis existentes.
-- [ ] Permite a exclusão de heróis.
+- [x] Exibe a lista de heróis.
+- [x] Permite a criação de um novo herói.
+- [x] Permite a atualização de heróis existentes.
+- [x] Permite a exclusão de heróis.
 
 **Componentes Necessários:**
 
@@ -48,7 +48,7 @@
 
 **Rotas para CRUD de Heróis:**
 
-- [ ] **Criar Herói**
+- [x] **Criar Herói**
   - **Endpoint:** `/heroes`
   - **Método:** POST
   - **Descrição:** Cria um novo herói. Os dados do herói (nome, habilidades, e origem) devem ser enviados no corpo da requisição. O cadastro deve ser predefinido a heróis que já existem no universo Marvel.
@@ -58,12 +58,12 @@
   - **Método:** GET
   - **Descrição:** Retorna a lista de todos os heróis.
 
-- [ ] **Atualizar Herói**
+- [x] **Atualizar Herói**
   - **Endpoint:** `/heroes/:id`
   - **Método:** PUT
   - **Descrição:** Atualiza um herói existente com base no ID. Os novos dados do herói (nome, habilidades, e origem) devem ser enviados no corpo da requisição.
 
-- [ ] **Excluir Herói**
+- [x] **Excluir Herói**
   - **Endpoint:** `/heroes/:id`
   - **Método:** DELETE
   - **Descrição:** Exclui um herói existente com base no ID.
@@ -73,16 +73,16 @@
 **Frontend:**
 
 - [x] Utilizar React com TypeScript.
-- [ ] Utilizar Axios ou Fetch para fazer requisições HTTP ao backend.
+- [x] Utilizar Axios ou Fetch para fazer requisições HTTP ao backend.
 - [x] Gerenciar o estado da aplicação utilizando o contexto do React ou uma biblioteca de gerenciamento de estado como Redux ou Zustand.
   - Por atualmente estou estudando mais fundo sobre gerenciamento de estados optei por construir uma store - um repositório centralizado de estado da aplicação - personalizada para poder mais simples de entender e usar, especialmente para projetos menores.
 - [ ] Uso do SWR será considerado uma habilidade valorizada.
 
 **Backend:**
 
-- [ ] Utilizar NestJS com TypeScript.
-- [ ] Utilizar um banco de dados relacional ou não relacional (ex. MongoDB, PostgreSQL, MySQL).
-- [ ] Implementar as operações CRUD (Create, Read, Update, Delete) para gerenciar os heróis.
+- [x] Utilizar NestJS com TypeScript.
+- [x] Utilizar um banco de dados relacional ou não relacional (ex. MongoDB, PostgreSQL, MySQL).
+- [x] Implementar as operações CRUD (Create, Read, Update, Delete) para gerenciar os heróis.
 
 ## Critérios de Avaliação
 
