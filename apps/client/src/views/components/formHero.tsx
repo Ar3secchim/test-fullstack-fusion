@@ -45,12 +45,9 @@ export function FormHeroComponent() {
       reset();
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        toast.error(
-          error.response.data.message ||
-          "Heroi não encontrado no mundo Marvel ",
-        );
+        toast.error("Heroi não encontrado no mundo Marvel ");
       } else {
-        toast.error("Erro ao criar herói");
+        toast.error("Desculpa.Erro ao criar herói, tente novamente!");
       }
       console.error(error);
     }
@@ -77,6 +74,7 @@ export function FormHeroComponent() {
               },
             })}
           />
+
           {errors.name && (
             <span className="text-red-500 text-sm">{errors.name.message}</span>
           )}
