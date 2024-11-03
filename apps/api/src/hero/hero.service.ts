@@ -24,7 +24,7 @@ export class HeroService {
     const heroExist = await this.validateHero.execute({ name });
 
     if (!heroExist) {
-      throw new BadRequestException('Heroi não existe na marvel');
+      throw new BadRequestException('Heroi não encontrado no mundo na marvel');
     }
 
     const hero = await this.prismaService.hero.create({
